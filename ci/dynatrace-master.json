@@ -1,0 +1,98 @@
+[
+    {
+        "ParameterKey": "AdminEmail",
+        "ParameterValue": "test@test.com"
+    },
+    {
+        "ParameterKey": "AdminPassword",
+        "ParameterValue": "test"
+    },
+    {
+        "ParameterKey": "AvailabilityZones",
+        "ParameterValue": "$[alfred_genaz_2]"
+    },
+    {
+        "ParameterKey": "LicenseKey",
+        "ParameterValue": "foo"
+    },
+    {
+        "ParameterKey": "DownloadUrl",
+        "ParameterValue": "https://mcsvc.dynatrace.com/downloads/installer/get/latest?token=AQECAHgWRMdElTYfhZCupuE7ykwW1JOgVOWYNXb8u4pNcPM3owAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAzK9fFyw-Ri0486QMgCARCAQKIHGWiUrGnc5ZYbDhUhuxeJDtfqKssS650V3jAVnU8SJcvLOdookAiLz96ckefEwhuYy4fpwSczrQrPzSp12fI"
+    },
+    {
+        "ParameterKey": "DynatraceInstanceType",
+        "ParameterValue": "r4.xlarge"
+    },
+    {
+        "ParameterKey": "DynatraceInstanceTenancy",
+        "ParameterValue": "default"
+    },
+    {
+        "ParameterKey": "BinVolumeSize",
+        "ParameterValue": "50"
+    },
+    {
+        "ParameterKey": "MiscVolumeSize",
+        "ParameterValue": "100"
+    },
+    {
+        "ParameterKey": "SrvVolumeSize",
+        "ParameterValue": "500"
+    },
+    {
+        "ParameterKey": "CassandraVolumeSize",
+        "ParameterValue": "1200"
+    },
+    {
+        "ParameterKey": "ElasticSearchVolumeSize",
+        "ParameterValue": "700"
+    },
+    {
+        "ParameterKey": "BastionHostInstanceType",
+        "ParameterValue": "t2.micro"
+    },
+    {
+        "ParameterKey": "KeyPairName",
+        "ParameterValue": "$[alfred_getkeypair]"
+    },
+    {
+        "ParameterKey": "NumberOfAZs",
+        "ParameterValue": "2"
+    },
+    {
+        "ParameterKey": "NumNodes",
+        "ParameterValue": "3"
+    },
+    {
+        "ParameterKey": "PrivateSubnet1CIDR",
+        "ParameterValue": "10.0.0.0/19"
+    },
+    {
+        "ParameterKey": "PrivateSubnet2CIDR",
+        "ParameterValue": "10.0.32.0/19"
+    },
+    {
+        "ParameterKey": "PrivateSubnet3CIDR",
+        "ParameterValue": "10.0.64.0/19"
+    }
+    {
+        "ParameterKey": "PublicSubnet1CIDR",
+        "ParameterValue": "10.0.128.0/20"
+    },
+    {
+        "ParameterKey": "PublicSubnet2CIDR",
+        "ParameterValue": "10.0.144.0/20"
+    },
+    {
+        "ParameterKey": "PrivateSubnet3CIDR",
+        "ParameterValue": "10.0.160.0/20"
+    },
+        {
+        "ParameterKey": "RemoteAccessCIDR",
+        "ParameterValue": "0.0.0.0/0"
+    },
+    {
+        "ParameterKey": "VPCCIDR",
+        "ParameterValue": "10.0.0.0/16"
+    }
+]
