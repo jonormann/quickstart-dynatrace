@@ -1,11 +1,11 @@
 [
     {
         "ParameterKey": "AdminEmail",
-        "ParameterValue": "test@test.com"
+        "ParameterValue": "test@example.com"
     },
     {
         "ParameterKey": "AdminPassword",
-        "ParameterValue": "test"
+        "ParameterValue": "$[alfred_genpass_12]"
     },
     {
         "ParameterKey": "AvailabilityZones",
@@ -48,7 +48,7 @@
         "ParameterValue": "700"
     },
     {
-        "ParameterKey": "BastionHostInstanceType",
+        "ParameterKey": "BastionInstanceType",
         "ParameterValue": "t2.micro"
     },
     {
@@ -74,7 +74,7 @@
     {
         "ParameterKey": "PrivateSubnet3CIDR",
         "ParameterValue": "10.0.64.0/19"
-    }
+    },
     {
         "ParameterKey": "PublicSubnet1CIDR",
         "ParameterValue": "10.0.128.0/20"
@@ -89,7 +89,7 @@
     },
         {
         "ParameterKey": "RemoteAccessCIDR",
-        "ParameterValue": "0.0.0.0/0"
+        "ParameterValue": "10.0.0.0/16"
     },
     {
         "ParameterKey": "VPCCIDR",
