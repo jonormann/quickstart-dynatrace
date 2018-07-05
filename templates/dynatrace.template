@@ -6,7 +6,7 @@
             "ParameterGroups": [
                 {
                     "Label": {
-                        "default": "Dynatrace Managed cluster details"
+                        "default": "Dynatrace Managed Cluster Details"
                     },
                     "Parameters": [
                         "LicenseKey",
@@ -16,11 +16,27 @@
                 },
                 {
                     "Label": {
-                        "default": "Initial environment settings"
+                        "default": "Dynatraced Managed Cluster Environment Configuration"
                     },
                     "Parameters": [
                         "AdminPassword",
                         "AdminEmail"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "Network Configuration"
+                    },
+                    "Parameters": [
+                        "NumberOfAZs",
+                        "VPCID",
+                        "PrivateSubnet1ID",
+                        "PrivateSubnet2ID",
+                        "PrivateSubnet3ID",
+                        "PublicSubnet1ID",
+                        "PublicSubnet2ID",
+                        "PublicSubnet3ID",
+                        "BastionSecurityGroupID"
                     ]
                 },
                 {
@@ -47,22 +63,6 @@
                 },
                 {
                     "Label": {
-                        "default": "Network Configuration"
-                    },
-                    "Parameters": [
-                        "NumberOfAZs",
-                        "VPCID",
-                        "PrivateSubnet1ID",
-                        "PrivateSubnet2ID",
-                        "PrivateSubnet3ID",
-                        "PublicSubnet1ID",
-                        "PublicSubnet2ID",
-                        "PublicSubnet3ID",
-                        "BastionSecurityGroupID"
-                    ]
-                },
-                {
-                    "Label": {
                         "default": "AWS Quick Start Configuration"
                     },
                     "Parameters": [
@@ -76,31 +76,25 @@
                     "default": "Contact email for the cluster."
                 },
                 "AdminPassword" : {
-                    "default": "Initial password for the 'admin' user needed for accessing Dynatrace cluster console UI"
+                    "default": "Admin Password"
                 },
                 "BastionSecurityGroupID": {
                     "default": "Bastion Security Group ID"
+                },
+                "BinVolumeSize" : {
+                    "default": "EBS Volume size - Installation"
+                },
+                "CassandraVolumeSize" : {
+                    "default": "EBS Volume size - Long Term Storage"
                 },
                 "DownloadUrl": {
                     "default": "Dynatrace Managed installer download URL"
                 },
                 "DynatraceInstanceType": {
-                    "default": "EC2 Instance Type of Dynatrace Managed nodes"
+                    "default": "Dynatrace Managed Instance Type"
                 },
                 "DynatraceInstanceTenancy" : {
-                    "default": "EC2 Instance tenancy Dynatrace Managed nodes"
-                },
-                "BinVolumeSize" : {
-                    "default": "EBS Volume size - Installation"
-                },
-                "MiscVolumeSize" : {
-                    "default": "EBS Volume size - Logs and updates"
-                },
-                "SrvVolumeSize" : {
-                    "default": "EBS Volume size - Transaction Storage"
-                },
-                "CassandraVolumeSize" : {
-                    "default": "EBS Volume size - Long Term Storage"
+                    "default": "Dynatrace Managed Instance Tenancy"
                 },
                 "ElasticSearchVolumeSize" : {
                     "default": "EBS Volume size - ElasticSearch"
@@ -111,11 +105,14 @@
                 "LicenseKey": {
                     "default": "Dynatrace Managed license key"
                 },
+                "MiscVolumeSize" : {
+                    "default": "EBS Volume size - Logs and updates"
+                },
                 "NumberOfAZs": {
                     "default": "Number of Availability Zones"
                 },
                 "NumNodes": {
-                    "default": "Number of nodes"
+                    "default": "Number of Dynatrace Managed nodes"
                 },
                 "PublicSubnet1ID": {
                     "default": "Public Subnet 1 ID"
@@ -141,6 +138,9 @@
                 "QSS3KeyPrefix": {
                     "default": "Quick Start S3 Key Prefix"
                 },
+                "SrvVolumeSize" : {
+                    "default": "EBS Volume size - Transaction Storage"
+                },
                 "VPCID": {
                     "default": "VPC ID"
                 }
@@ -150,23 +150,24 @@
     "Parameters": {
        "AdminEmail": {
          "Type": "String",
-         "Description": "Problem notifications may be send to this address if there is an issue detected on cluster."
+         "Description": "Problem notifications may be sent to this address if there is an issue detected on the cluster."
        },
        "AdminPassword" : {
          "Type": "String",
          "NoEcho" : "true",
-         "Description": "Note: This password should be changed afterwards",
+         "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI. Note: This password should be changed afterwards.",
          "MinLength" : "8"
        },
         "BastionSecurityGroupID": {
-            "Description": "ID of the bastion host security group to enable SSH connections (e.g., sg-7f16e910)",
+            "Description": "ID of the bastion host security group to enable SSH connections (e.g., sg-7f16e910).",
             "Type": "AWS::EC2::SecurityGroup::Id"
         },
         "LicenseKey": {
+            "Description": "Please see the user guide for information on how to obtain a license key.",
             "Type": "String"
         },
         "DownloadUrl": {
-			"Description": "Dynatrace Managed installer download URL",
+			"Description": "Please see the user guide for information on how to obtain the download URL.",
             "Type": "String"
         },
         "DynatraceInstanceType": {
@@ -186,56 +187,56 @@
                 "m5.24xlarge"
             ],
             "Default": "r4.xlarge",
-            "Description": "Amazon EC2 instance type for the Dynatrace nodes",
+            "Description": "Amazon EC2 instance type for the Dynatrace nodes.",
             "Type": "String"
         },
         "DynatraceInstanceTenancy" : {
             "AllowedValues": ["default", "dedicated"],
             "Default": "default",
-            "Description": "Should Dynatrace node run on a dedicated or multi-tenant host",
+            "Description": "Choose whether Dynatrace nodes run on a dedicated or a multi-tenant host.",
             "Type": "String"
         },
         "BinVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Binaries",
+            "Description" : "Dynatrace Managed For Binaries.",
             "Default" : "50",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "MiscVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Logs and updates",
+            "Description" : "Dynatrace Managed Data Directory For Logs and Updates.",
             "Default" : "100",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "SrvVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Transaction Storage",
+            "Description" : "Dynatrace Managed Data Directory For Transaction Storage.",
             "Default" : "500",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "CassandraVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Long-term Metrics Store - Cassandra",
+            "Description" : "Dynatrace Managed Cassandra Long-term Metrics Repository.",
             "Default" : "1200",
             "MinValue" : "50",
             "MaxValue" : "16384"
         },
         "ElasticSearchVolumeSize" : {
             "Type" : "Number",
-            "Description" : "ElasticSearch Store",
+            "Description" : "Dynatrace Managed ElasticSearch Store.",
             "Default" : "700",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
 		"LicenseKey": {
-			"Description": "Dynatrace Managed license key",
+			"Description": "Dynatrace Managed license key.",
             "Type": "String"
         },
 		"KeyPairName": {
-            "Description": "Enter a Public/private key pair. If you do not have one in this region, please create it before continuing",
+            "Description": "Enter a Public/private key pair. If you do not have one in this region, please create it before continuing.",
             "Type": "AWS::EC2::KeyPair::KeyName"
         },
         "NumberOfAZs": {
@@ -257,31 +258,31 @@
                 "6"
             ],
             "Default": "3",
-            "Description": "Enter the number of nodes to create",
+            "Description": "Number of Dynatrace Managed nodes to create.",
             "Type": "String"
         },
         "PublicSubnet1ID": {
-            "Description": "ID of the public subnet 1 for used public-facing Load Balancer (e.g., subnet-a0246dcd)",
+            "Description": "ID of the public subnet 1 for used public-facing Load Balancer (e.g., subnet-a0246dcd).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PublicSubnet2ID": {
-            "Description": "ID of the public subnet 2 for used public-facing Load Balancer (e.g., subnet-e3246d8e)",
+            "Description": "ID of the public subnet 2 for used public-facing Load Balancer (e.g., subnet-e3246d8e).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PublicSubnet3ID": {
-            "Description": "ID of the public subnet 3 for used public-facing Load Balancer. Only relevant for deployments into 3 Availability zones",
+            "Description": "ID of the public subnet 3 for used public-facing Load Balancer. Only relevant for deployments into 3 Availability zones.",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PrivateSubnet1ID": {
-            "Description": "ID of the private subnet 1 that you want to provision the first node into (e.g., subnet-a0246dcd)",
+            "Description": "ID of the private subnet 1 that you want to provision the first node into (e.g., subnet-a0246dcd).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PrivateSubnet2ID": {
-            "Description": "ID of the private subnet 2 you want to provision the second node into (e.g., subnet-e3246d8e)",
+            "Description": "ID of the private subnet 2 you want to provision the second node into (e.g., subnet-e3246d8e).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PrivateSubnet3ID": {
-            "Description": "ID of the private subnet 3 you want to provision the third node into. Only relevant for deployments into 3 Availability zones",
+            "Description": "ID of the private subnet 3 you want to provision the third node into. Only relevant for deployments into 3 Availability zones.",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "QSS3BucketName": {
@@ -299,7 +300,7 @@
             "Type": "String"
         },
         "VPCID": {
-            "Description": "ID of the VPC (e.g., vpc-0343606e)",
+            "Description": "ID of the VPC (e.g., vpc-0343606e).",
             "Type": "AWS::EC2::VPC::Id"
         }
     },

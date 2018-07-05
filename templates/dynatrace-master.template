@@ -6,7 +6,7 @@
             "ParameterGroups": [
                 {
                     "Label": {
-                        "default": "Dynatrace Managed cluster details"
+                        "default": "Dynatrace Managed Cluster Configuration"
                     },
                     "Parameters": [
                         "LicenseKey",
@@ -16,7 +16,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Initial environment settings"
+                        "default": "Dynatraced Managed Cluster Environment Configuration"
                     },
                     "Parameters": [
                         "AdminPassword",
@@ -42,7 +42,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Common Amazon EC2 Configuration"
+                        "default": "Amazon EC2 Configuration"
                     },
                     "Parameters": [
                         "KeyPairName",
@@ -78,49 +78,46 @@
                     "default": "Contact email for the cluster."
                 },
                 "AdminPassword" : {
-                    "default": "Initial password for the 'admin' user needed for accessing Dynatrace cluster console UI"
+                    "default": "Admin Password"
                 },
                 "AvailabilityZones": {
                     "default": "Availability Zones"
                 },
-                "LicenseKey": {
-                    "default": "Dynatrace Managed license key"
+                "BastionInstanceType": {
+                    "default": "Bastion Instance Type"
+                },
+                "BinVolumeSize" : {
+                    "default": "EBS Volume size - Installation"
+                },
+                "CassandraVolumeSize" : {
+                    "default": "EBS Volume size - Long Term Storage"
                 },
                 "DownloadUrl": {
                     "default": "Dynatrace Managed installer download URL"
                 },
                 "DynatraceInstanceType": {
-                    "default": "EC2 Instance Type of Dynatrace Managed nodes"
+                    "default": "Dynatrace Managed Instance Type"
                 },
                 "DynatraceInstanceTenancy" : {
-                    "default": "EC2 Instance tenancy Dynatrace Managed nodes"
-                },
-                "BinVolumeSize" : {
-                    "default": "EBS Volume size - Installation"
-                },
-                "MiscVolumeSize" : {
-                    "default": "EBS Volume size - Logs and updates"
-                },
-                "SrvVolumeSize" : {
-                    "default": "EBS Volume size - Transaction Storage"
-                },
-                "CassandraVolumeSize" : {
-                    "default": "EBS Volume size - Long Term Storage"
+                    "default": "Dynatrace Managed Instance Tenancy"
                 },
                 "ElasticSearchVolumeSize" : {
                     "default": "EBS Volume size - ElasticSearch"
                 },
-                "BastionInstanceType": {
-                    "default": "Bastion Instance Type"
-                },
                 "KeyPairName": {
                     "default": "Key Pair Name"
+                },
+                "LicenseKey": {
+                    "default": "Dynatrace Managed license key"
+                },
+                "MiscVolumeSize" : {
+                    "default": "EBS Volume size - Logs and updates"
                 },
                 "NumberOfAZs": {
                     "default": "Number of Availability Zones"
                 },
                 "NumNodes": {
-                    "default": "Number of Dynatrace Nodes"
+                    "default": "Number of Dynatrace Managed nodes"
                 },
                 "PrivateSubnet1CIDR": {
                     "default": "Private Subnet 1 CIDR"
@@ -149,6 +146,9 @@
                 "RemoteAccessCIDR": {
                     "default": "Allowed Bastion External Access CIDR"
                 },
+                "SrvVolumeSize" : {
+                    "default": "EBS Volume size - Transaction Storage"
+                },
                 "VPCCIDR": {
                     "default": "VPC CIDR"
                 }
@@ -158,12 +158,12 @@
     "Parameters": {
         "AdminEmail": {
             "Type": "String",
-            "Description": "Problem notifications may be send to this address if there is an issue detected on cluster."
+            "Description": "Problem notifications may be sent to this address if there is an issue detected on the cluster."
         },
         "AdminPassword" : {
             "Type": "String",
             "NoEcho" : "true",
-            "Description": "Note: This password should be changed afterwards",
+            "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI. Note: This password should be changed afterwards.",
             "MinLength" : "8"
         },
         "AvailabilityZones": {
@@ -171,10 +171,11 @@
             "Type": "List<AWS::EC2::AvailabilityZone::Name>"
         },
         "LicenseKey": {
+            "Description": "Please see the user guide for information on how to obtain a license key.",
             "Type": "String"
         },
         "DownloadUrl": {
-            "Default": "https://mcsvc.dynatrace.com/downloads/installer/get/latest?token=AQECAHgWRMdElTYfhZCupuE7ykwW1JOgVOWYNXb8u4pNcPM3owAAAIQwgYEGCSqGSIb3DQEHBqB0MHICAQAwbQYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAzK9fFyw-Ri0486QMgCARCAQKIHGWiUrGnc5ZYbDhUhuxeJDtfqKssS650V3jAVnU8SJcvLOdookAiLz96ckefEwhuYy4fpwSczrQrPzSp12fI",
+            "Description": "Please see the user guide for information on how to obtain the download URL.",
             "Type": "String"
         },
         "DynatraceInstanceType": {
@@ -194,46 +195,46 @@
                 "m5.24xlarge"
             ],
             "Default": "r4.xlarge",
-            "Description": "Amazon EC2 instance type for the Dynatrace nodes",
+            "Description": "Amazon EC2 instance type for the Dynatrace nodes.",
             "Type": "String"
         },
         "DynatraceInstanceTenancy" : {
             "AllowedValues": ["default", "dedicated"],
             "Default": "default",
-            "Description": "Should Dynatrace node run on a dedicated or multi-tenant host",
+            "Description": "Choose whether Dynatrace nodes run on a dedicated or a multi-tenant host.",
             "Type": "String"
         },
         "BinVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Binaries",
+            "Description" : "Dynatrace Managed For Binaries.",
             "Default" : "50",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "MiscVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Logs and updates",
+            "Description" : "Dynatrace Managed Data Directory For Logs and Updates.",
             "Default" : "100",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "SrvVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Transaction Storage",
+            "Description" : "Dynatrace Managed Data Directory For Transaction Storage.",
             "Default" : "500",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "CassandraVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Long-term Metrics Store - Cassandra",
+            "Description" : "Dynatrace Managed Cassandra Long-term Metrics Repository.",
             "Default" : "1200",
             "MinValue" : "50",
             "MaxValue" : "16384"
         },
         "ElasticSearchVolumeSize" : {
             "Type" : "Number",
-            "Description" : "ElasticSearch Store",
+            "Description" : "Dynatrace Managed ElasticSearch Store.",
             "Default" : "700",
             "MinValue" : "20",
             "MaxValue" : "16384"
@@ -250,7 +251,7 @@
             ]
         },
         "KeyPairName": {
-            "Description": "Public/private key pairs allow you to securely connect to your instance after it launches",
+            "Description": "Public/private key pairs allow you to securely connect to your instance after it launches.",
             "Type": "AWS::EC2::KeyPair::KeyName"
         },
         "NumberOfAZs": {
@@ -272,7 +273,7 @@
                 "6"
             ],
             "Default": "3",
-            "Description": "Enter the number of nodes to create",
+            "Description": "Number of Dynatrace Managed nodes to create.",
             "Type": "String"
         },
         "PrivateSubnet1CIDR": {
@@ -293,28 +294,28 @@
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/16-28",
             "Default": "10.0.64.0/19",
-            "Description": "CIDR block for private subnet 3 located in Availability Zone 3",
+            "Description": "CIDR block for private subnet 3 located in Availability Zone 3.",
             "Type": "String"
         },
         "PublicSubnet1CIDR": {
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/16-28",
             "Default": "10.0.128.0/20",
-            "Description": "CIDR Block for the public DMZ subnet 1 located in Availability Zone 1",
+            "Description": "CIDR Block for the public DMZ subnet 1 located in Availability Zone 1.",
             "Type": "String"
         },
         "PublicSubnet2CIDR": {
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/16-28",
             "Default": "10.0.144.0/20",
-            "Description": "CIDR Block for the public DMZ subnet 2 located in Availability Zone 2",
+            "Description": "CIDR Block for the public DMZ subnet 2 located in Availability Zone 2.",
             "Type": "String"
         },
         "PublicSubnet3CIDR": {
             "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
             "ConstraintDescription": "CIDR block parameter must be in the form x.x.x.x/16-28",
             "Default": "10.0.160.0/20",
-            "Description": "CIDR block for the public DMZ subnet 3 located in Availability Zone 3",
+            "Description": "CIDR block for the public DMZ subnet 3 located in Availability Zone 3.",
             "Type": "String"
         },
 
