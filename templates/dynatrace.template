@@ -6,7 +6,7 @@
             "ParameterGroups": [
                 {
                     "Label": {
-                        "default": "Dynatrace Managed Cluster Details"
+                        "default": "Dynatrace Managed Cluster Configuration"
                     },
                     "Parameters": [
                         "LicenseKey",

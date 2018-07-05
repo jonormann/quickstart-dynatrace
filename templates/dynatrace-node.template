@@ -6,7 +6,7 @@
             "ParameterGroups": [
                 {
                     "Label": {
-                        "default": "Dynatrace Managed licensing details"
+                        "default": "Dynatrace Managed Licensing Configuration"
                     },
                     "Parameters": [
                         "LicenseKey",
@@ -15,7 +15,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Initial environment settings"
+                        "default": "Dynatraced Managed Cluster Environment Configuration"
                     },
                     "Parameters": [
                         "AdminPassword",
@@ -59,28 +59,22 @@
                     "default": "Contact email for the cluster."
                 },
                 "AdminPassword": {
-                    "default": "Initial password for the 'admin' user needed for accessing Dynatrace cluster console UI"
+                    "default": "Admin Password"
+                },
+                "BinVolumeSize" : {
+                    "default": "EBS Volume size - Installation"
+                },
+                "CassandraVolumeSize" : {
+                    "default": "EBS Volume size - Long Term Storage"
                 },
                 "DownloadUrl": {
                     "default": "Dynatrace Managed installer download URL"
                 },
                 "DynatraceInstanceType": {
-                    "default": "EC2 Instance Type of Dynatrace Managed nodes"
+                    "default": "Dynatrace Managed Instance Type"
                 },
                 "DynatraceInstanceTenancy" : {
-                    "default": "EC2 Instance tenancy Dynatrace Managed nodes"
-                },
-                "BinVolumeSize" : {
-                    "default": "EBS Volume size - Installation"
-                },
-                "MiscVolumeSize" : {
-                    "default": "EBS Volume size - Logs and updates"
-                },
-                "SrvVolumeSize" : {
-                    "default": "EBS Volume size - Transaction Storage"
-                },
-                "CassandraVolumeSize" : {
-                    "default": "EBS Volume size - Long Term Storage"
+                    "default": "Dynatrace Managed Instance Tenancy"
                 },
                 "ElasticSearchVolumeSize" : {
                     "default": "EBS Volume size - ElasticSearch"
@@ -91,6 +85,9 @@
                 "LicenseKey": {
                     "default": "Dynatrace Managed license key"
                 },
+                "MiscVolumeSize" : {
+                    "default": "EBS Volume size - Logs and updates"
+                },
                 "PrivateSubnetID": {
                     "default": "Private Subnet ID"
                 },
@@ -99,6 +96,9 @@
                 },
                 "QSS3KeyPrefix": {
                     "default": "Quick Start S3 Key Prefix"
+                },
+                "SrvVolumeSize" : {
+                    "default": "EBS Volume size - Transaction Storage"
                 },
                 "VPCID": {
                     "default": "VPC ID"
@@ -109,19 +109,20 @@
     "Parameters": {
        "AdminEmail": {
          "Type": "String",
-         "Description": "Problem notifications may be send to this address if there is an issue detected on cluster."
+         "Description": "Problem notifications may be sent to this address if there is an issue detected on the cluster."
        },
        "AdminPassword" : {
          "Type": "String",
          "NoEcho" : "true",
-         "Description": "Note: This password should be changed afterwards",
+         "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI. Note: This password should be changed afterwards.",
          "MinLength" : "8"
        },
         "LicenseKey": {
+            "Description": "Please see the user guide for information on how to obtain a license key.",
             "Type": "String"
         },
         "DownloadUrl": {
-			"Description": "Dynatrace Managed installer download URL",
+			"Description": "Please see the user guide for information on how to obtain the download URL.",
             "Type": "String"
         },
         "DynatraceInstanceType": {
@@ -147,40 +148,40 @@
         "DynatraceInstanceTenancy" : {
             "AllowedValues": ["default", "dedicated"],
             "Default": "default",
-            "Description": "Should Dynatrace node run on a dedicated or multi-tenant host",
+            "Description": "Choose whether Dynatrace nodes run on a dedicated or a multi-tenant host.",
             "Type": "String"
         },
         "BinVolumeSize" : {
            "Type" : "Number",
-           "Description" : "Binaries",
+           "Description" : "Dynatrace Managed For Binaries.",
            "Default" : "50",
            "MinValue" : "20",
            "MaxValue" : "16384"
         },
         "MiscVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Logs and updates",
+            "Description" : "Dynatrace Managed Data Directory For Logs and Updates.",
             "Default" : "100",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "SrvVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Transaction Storage",
+            "Description" : "Dynatrace Managed Data Directory For Transaction Storage.",
             "Default" : "500",
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
         "CassandraVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Long-term Metrics Store - Cassandra",
+            "Description" : "Dynatrace Managed Cassandra Long-term Metrics Repository.",
             "Default" : "1200",
             "MinValue" : "50",
             "MaxValue" : "16384"
         },
         "ElasticSearchVolumeSize" : {
             "Type" : "Number",
-            "Description" : "ElasticSearch Store",
+            "Description" : "Dynatrace Managed ElasticSearch Store.",
             "Default" : "700",
             "MinValue" : "20",
             "MaxValue" : "16384"
