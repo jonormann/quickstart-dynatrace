@@ -1,17 +1,23 @@
 #!/bin/bash -e
 
+PROPERTY_FILE=$1
+
+function getProperty() {
+	sed -n -e "/^#\?\s*${1}\s*=.*$/p" $PROPERTY_FILE | cut -d= -f2-
+}
+
 REGION=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//'`
-SEED_IP_NAME=$4
+SEED_IP_NAME=`getProperty SeedIpName`
 SEED_IP=`aws ssm get-parameter --region $REGION --name "$SEED_IP_NAME" | grep -Po 'Value": "\K[^"]*'`
-API_TOKEN_NAME=$5
+API_TOKEN_NAME=`getProperty SeedTokenName`
 API_TOKEN=`aws ssm get-parameter --region $REGION --name "$API_TOKEN_NAME" | grep -Po 'Value": "\K[^"]*'`
 
 function installSeed() {
-    local LICENSE_KEY=$1
-    local ADMIN_EMAIL=$2
-    local ADMIN_PASS=$3
-    local SEED_IP_NAME=$4
-    local API_TOKEN_NAME=$5
+    local LICENSE_KEY=`getProperty LicenseKey`
+    local ADMIN_EMAIL=`getProperty AdminEmail`
+    local ADMIN_PASS=`getProperty AdminPassword`
+    local SEED_IP_NAME=`getProperty SeedIpName`
+    local API_TOKEN_NAME=`getProperty SeedTokenName`
 
     echo "Run the installer in silent mode, assuming the defaults. Note: license key must be valid and not used by any other cluster"
     cd /tmp
@@ -55,33 +61,12 @@ function addNode() {
     return $?
 }
 
-function waitUntilFullyBootstrapped() {
-
-    local ITER=60
-
-    for (( i=1; $i <= $ITER; i++ )) ; do
-       if grep -q "SSLConnector at port=8021 refreshed" /opt/dynatrace-managed/server/log/Server.0.0.log
-       then
-          echo "Bootstrapping complete"
-          return 0
-       else
-          if [[ "$ITER" == "$i" ]]
-          then
-             echo "Timeout when bootstrapping"
-             return 1
-          else
-             echo "Waiting to finish bootstrapping"
-             sleep 10
-          fi
-       fi
-    done
-}
 
 if [[ "$API_TOKEN" == "null" ]]
 then
-    installSeed "$@" && waitUntilFullyBootstrapped
+    installSeed
 else
-    addNode "$SEED_IP" "$API_TOKEN" && waitUntilFullyBootstrapped
+    addNode "$SEED_IP" "$API_TOKEN"
 fi
 
 exit $?

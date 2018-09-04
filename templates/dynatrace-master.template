@@ -163,7 +163,7 @@
         "AdminPassword" : {
             "Type": "String",
             "NoEcho" : "true",
-            "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI. Note: This password should be changed afterwards.",
+            "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI.",
             "MinLength" : "8"
         },
         "AvailabilityZones": {
