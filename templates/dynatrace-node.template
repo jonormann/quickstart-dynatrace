@@ -396,63 +396,77 @@
                                     ]
                                 },
                                 "mode": "000550", "owner": "root","group": "root", "authentication": "S3AccessCreds"
+                            },
+                            "/tmp/uninstall.sh": {
+                                "source": {
+                                    "Fn::Sub": [
+                                        "https://${QSS3BucketName}.${QSS3Region}.amazonaws.com/${QSS3KeyPrefix}scripts/uninstall.sh",
+                                        {
+                                            "QSS3Region": {
+                                                "Fn::If": [
+                                                    "GovCloudCondition",
+                                                    "s3-us-gov-west-1",
+                                                    "s3"
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "mode": "000550", "owner": "root","group": "root", "authentication": "S3AccessCreds"
+                            },
+                            "/tmp/params": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                    [
+                                        "DownloadUrl=",
+                                        {
+                                            "Ref": "DownloadUrl"
+                                        },
+                                        "\n",
+                                        "LicenseKey=",
+                                        {
+                                            "Ref": "LicenseKey"
+                                        },
+                                        "\n",
+                                        "AdminEmail=",
+                                        {
+                                            "Ref": "AdminEmail"
+                                        },
+                                        "\n",
+                                        "AdminPassword=",
+                                        {
+                                            "Ref": "AdminPassword"
+                                        },
+                                        "\n",
+                                        "SeedIpName=",
+                                        {
+                                            "Ref": "SeedIpName"
+                                        },
+                                        "\n",
+                                        "SeedTokenName=",
+                                        {
+                                            "Ref": "SeedTokenName"
+                                        },
+                                        "\n"
+                                    ]
+                                ]
+                            },
+                                "mode": "000550", "owner": "root","group": "root", "authentication": "S3AccessCreds"
                             }
                         },
                         "commands": {
-                            "1-disk-setup": {
+                            "1-host-setup": {
                                 "command": "/tmp/host_setup.sh"
                             },
                             "2-download-installer": {
-                                "command": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "/tmp/download_installer.sh",
-                                            " \"",
-                                            {
-                                                "Ref": "DownloadUrl"
-                                            },
-                                            "\" ",
-                                            {
-                                                "Ref": "SeedIpName"
-                                            },
-                                            " ",
-                                            {
-                                                "Ref": "SeedTokenName"
-                                            }
-                                        ]
-                                    ]
-                                }
+                                "command": "/tmp/download_installer.sh /tmp/params"
                             },
                             "3-dynatrace-install": {
-                                "command": {
-                                    "Fn::Join": [
-                                        "",
-                                        [
-                                            "/tmp/install.sh",
-                                            " ",
-                                            {
-                                                "Ref": "LicenseKey"
-                                            },
-                                            " \"",
-                                            {
-                                                "Ref": "AdminEmail"
-                                            },
-                                            "\" \"",
-                                            {
-                                                "Ref": "AdminPassword"
-                                            },
-                                            "\" ",
-                                            {
-                                                "Ref": "SeedIpName"
-                                            },
-                                            " ",
-                                            {
-                                                "Ref": "SeedTokenName"
-                                            }
-                                        ]
-                                    ]
-                                }
+                                "command": "/tmp/install.sh /tmp/params"
+                            },
+                            "4-cleanup": {
+                                "command": "rm /tmp/params"
                             }
                         }
                     }

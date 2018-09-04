@@ -1,9 +1,16 @@
 #!/bin/bash -e
 
+PROPERTY_FILE=$1
+
+function getProperty() {
+	sed -n -e "/^#\?\s*${1}\s*=.*$/p" $PROPERTY_FILE | cut -d= -f2-
+}
+
+DOWNLOAD_URL=`getProperty DownloadUrl`
 REGION=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/[a-z]$//'`
-SEED_IP_NAME=$2
+SEED_IP_NAME=`getProperty SeedIpName`
 SEED_IP=`aws ssm get-parameter --region $REGION --name "$SEED_IP_NAME" | grep -Po 'Value": "\K[^"]*'`
-API_TOKEN_NAME=$3
+API_TOKEN_NAME=`getProperty SeedTokenName`
 API_TOKEN=`aws ssm get-parameter --region $REGION --name "$API_TOKEN_NAME" | grep -Po 'Value": "\K[^"]*'`
 
 function downloadFromMcsvc() {
@@ -26,16 +33,17 @@ function downloadFromMcsvc() {
 
 function downloadFromSeed() {
     local SEED_IP=$1
+    local API_TOKEN=$2
 
     echo "Download from seed"
     cd /tmp
-    wget --no-check-certificate -O dynatrace-managed.sh "https://$SEED_IP:8021/nodeinstaller"
+    wget --no-check-certificate -O dynatrace-managed.sh "https://$SEED_IP:8021/nodeinstaller/$API_TOKEN"
 }
 
 if [[ "$API_TOKEN" == "null" ]]
 then
-    downloadFromMcsvc $1
+    downloadFromMcsvc $DOWNLOAD_URL
 else
-    downloadFromSeed $SEED_IP
+    downloadFromSeed $SEED_IP $API_TOKEN
 fi
 
