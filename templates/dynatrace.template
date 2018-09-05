@@ -231,10 +231,6 @@
             "MinValue" : "20",
             "MaxValue" : "16384"
         },
-		"LicenseKey": {
-			"Description": "Dynatrace Managed license key.",
-            "Type": "String"
-        },
 		"KeyPairName": {
             "Description": "Enter a Public/private key pair. If you do not have one in this region, please create it before continuing.",
             "Type": "AWS::EC2::KeyPair::KeyName"

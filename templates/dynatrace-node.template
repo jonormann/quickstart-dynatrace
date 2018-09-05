@@ -195,10 +195,6 @@
         "DynatraceNodeSecurityGroup" : {
             "Type" : "AWS::EC2::SecurityGroup::Id"
         },
-		"LicenseKey": {
-			"Description": "Dynatrace Managed license key",
-            "Type": "String"
-        },
 		"KeyPairName": {
             "Description": "Enter a Public/private key pair. If you do not have one in this region, please create it before continuing",
             "Type": "AWS::EC2::KeyPair::KeyName"
