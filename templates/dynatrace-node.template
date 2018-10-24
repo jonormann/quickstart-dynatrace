@@ -6,7 +6,7 @@
             "ParameterGroups": [
                 {
                     "Label": {
-                        "default": "Dynatrace Managed Licensing Configuration"
+                        "default": "Dynatrace Managed licensing configuration"
                     },
                     "Parameters": [
                         "LicenseKey",
@@ -15,7 +15,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Dynatraced Managed Cluster Environment Configuration"
+                        "default": "Dynatraced Managed cluster environment configuration"
                     },
                     "Parameters": [
                         "AdminPassword",
@@ -24,7 +24,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Amazon EC2 Configuration"
+                        "default": "Amazon EC2 configuration"
                     },
                     "Parameters": [
                         "KeyPairName",
@@ -34,7 +34,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Amazon EBS Volume Sizing Configuration"
+                        "default": "Amazon EBS Volume sizing configuration"
                     },
                     "Parameters": [
                         "BinVolumeSize",
@@ -46,7 +46,7 @@
                 },
                 {
                     "Label": {
-                        "default": "AWS Quick Start Configuration"
+                        "default": "AWS Quick Start configuration"
                     },
                     "Parameters": [
                         "QSS3BucketName",
@@ -59,46 +59,46 @@
                     "default": "Contact email for the cluster."
                 },
                 "AdminPassword": {
-                    "default": "Admin Password"
+                    "default": "Admin password"
                 },
                 "BinVolumeSize": {
-                    "default": "EBS Volume size - Installation"
+                    "default": "EBS Volume size - installation"
                 },
                 "CassandraVolumeSize": {
-                    "default": "EBS Volume size - Long Term Storage"
+                    "default": "EBS Volume size - long term storage"
                 },
                 "DownloadUrl": {
                     "default": "Dynatrace Managed installer download URL"
                 },
                 "DynatraceInstanceType": {
-                    "default": "Dynatrace Managed Instance Type"
+                    "default": "Dynatrace Managed instance type"
                 },
                 "DynatraceInstanceTenancy": {
-                    "default": "Dynatrace Managed Instance Tenancy"
+                    "default": "Dynatrace Managed instance tenancy"
                 },
                 "ElasticSearchVolumeSize": {
                     "default": "EBS Volume size - ElasticSearch"
                 },
                 "KeyPairName": {
-                    "default": "Key Pair Name"
+                    "default": "Key pair name"
                 },
                 "LicenseKey": {
                     "default": "Dynatrace Managed license key"
                 },
                 "MiscVolumeSize": {
-                    "default": "EBS Volume size - Logs and updates"
+                    "default": "EBS Volume size - logs and updates"
                 },
                 "PrivateSubnetID": {
                     "default": "Private Subnet ID"
                 },
                 "QSS3BucketName": {
-                    "default": "Quick Start S3 Bucket Name"
+                    "default": "Quick Start S3 bucket name"
                 },
                 "QSS3KeyPrefix": {
-                    "default": "Quick Start S3 Key Prefix"
+                    "default": "Quick Start S3 key prefix"
                 },
                 "SrvVolumeSize": {
-                    "default": "EBS Volume size - Transaction Storage"
+                    "default": "EBS Volume size - transaction storage"
                 },
                 "VPCID": {
                     "default": "VPC ID"
