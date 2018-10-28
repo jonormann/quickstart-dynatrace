@@ -16,7 +16,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Dynatraced Managed cluster environment configuration"
+                        "default": "Dynatrace Managed cluster environment configuration"
                     },
                     "Parameters": [
                         "AdminPassword",
@@ -51,7 +51,7 @@
                 },
                 {
                     "Label": {
-                        "default": "Amazon EBS Volume sizing configuration"
+                        "default": "Amazon EBS volume sizing configuration"
                     },
                     "Parameters": [
                         "BinVolumeSize",
@@ -82,10 +82,10 @@
                     "default": "Bastion Security Group ID"
                 },
                 "BinVolumeSize" : {
-                    "default": "EBS Volume size - installation"
+                    "default": "EBS volume size - installation"
                 },
                 "CassandraVolumeSize" : {
-                    "default": "EBS Volume size - long term storage"
+                    "default": "EBS volume size - long term storage"
                 },
                 "DownloadUrl": {
                     "default": "Dynatrace Managed installer download URL"
@@ -97,7 +97,7 @@
                     "default": "Dynatrace Managed instance tenancy"
                 },
                 "ElasticSearchVolumeSize" : {
-                    "default": "EBS Volume size - ElasticSearch"
+                    "default": "EBS volume size - ElasticSearch"
                 },
                 "KeyPairName": {
                     "default": "Key pair name"
@@ -106,7 +106,7 @@
                     "default": "Dynatrace Managed license key"
                 },
                 "MiscVolumeSize" : {
-                    "default": "EBS Volume size - logs and updates"
+                    "default": "EBS volume size - logs and updates"
                 },
                 "NumberOfAZs": {
                     "default": "Number of Availability Zones"
@@ -115,22 +115,22 @@
                     "default": "Number of Dynatrace Managed nodes"
                 },
                 "PublicSubnet1ID": {
-                    "default": "Public Subnet 1 ID"
+                    "default": "Public subnet 1 ID"
                 },
                 "PublicSubnet2ID": {
-                    "default": "Public Subnet 2 ID"
+                    "default": "Public subnet 2 ID"
                 },
                 "PublicSubnet3ID": {
-                    "default": "Public Subnet 3 ID"
+                    "default": "Public subnet 3 ID"
                 },
                 "PrivateSubnet1ID": {
-                    "default": "Private Subnet 1 ID"
+                    "default": "Private subnet 1 ID"
                 },
                 "PrivateSubnet2ID": {
-                    "default": "Private Subnet 2 ID"
+                    "default": "Private subnet 2 ID"
                 },
                 "PrivateSubnet3ID": {
-                    "default": "Private Subnet 3 ID"
+                    "default": "Private subnet 3 ID"
                 },
                 "QSS3BucketName": {
                     "default": "Quick Start S3 bucket name"
@@ -139,7 +139,7 @@
                     "default": "Quick Start S3 key prefix"
                 },
                 "SrvVolumeSize" : {
-                    "default": "EBS Volume size - transaction storage"
+                    "default": "EBS volume size - transaction storage"
                 },
                 "VPCID": {
                     "default": "VPC ID"
@@ -150,12 +150,12 @@
     "Parameters": {
        "AdminEmail": {
          "Type": "String",
-         "Description": "Problem notifications may be sent to this address if there is an issue detected on the cluster."
+         "Description": "Problem notifications will be sent to this address if an issue is detected on the cluster."
        },
        "AdminPassword" : {
          "Type": "String",
          "NoEcho" : "true",
-         "Description": "Initial password for the 'admin' user needed for accessing the Dynatrace cluster console UI.",
+         "Description": "Initial password for the 'admin' user. This password is used to access the Dynatrace cluster console UI.",
          "MinLength" : "8"
        },
         "BastionSecurityGroupID": {
@@ -198,7 +198,7 @@
         },
         "BinVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Dynatrace Managed For Binaries.",
+            "Description" : "Dynatrace Managed volume For Binaries.",
             "Default" : "50",
             "MinValue" : "20",
             "MaxValue" : "16384"
@@ -219,14 +219,14 @@
         },
         "CassandraVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Dynatrace Managed Cassandra Long-term Metrics Repository.",
+            "Description" : "Dynatrace Managed volume for Cassandra Long-term Metrics Repository.",
             "Default" : "1200",
             "MinValue" : "50",
             "MaxValue" : "16384"
         },
         "ElasticSearchVolumeSize" : {
             "Type" : "Number",
-            "Description" : "Dynatrace Managed ElasticSearch Store.",
+            "Description" : "Dynatrace Managed volume for ElasticSearch Store.",
             "Default" : "700",
             "MinValue" : "20",
             "MaxValue" : "16384"
@@ -257,15 +257,15 @@
             "Type": "String"
         },
         "PublicSubnet1ID": {
-            "Description": "ID of the public subnet 1 for used public-facing Load Balancer (e.g., subnet-a0246dcd).",
+            "Description": "ID of the public subnet 1 for used public-facing Network Load Balancer (e.g., subnet-a0246dcd).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PublicSubnet2ID": {
-            "Description": "ID of the public subnet 2 for used public-facing Load Balancer (e.g., subnet-e3246d8e).",
+            "Description": "ID of the public subnet 2 for used public-facing Network Load Balancer (e.g., subnet-e3246d8e).",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PublicSubnet3ID": {
-            "Description": "ID of the public subnet 3 for used public-facing Load Balancer. Only relevant for deployments into 3 Availability zones.",
+            "Description": "ID of the public subnet 3 for used public-facing Network Load Balancer. Only relevant for deployments into three Availability Zones.",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PrivateSubnet1ID": {
@@ -277,7 +277,7 @@
             "Type": "AWS::EC2::Subnet::Id"
         },
         "PrivateSubnet3ID": {
-            "Description": "ID of the private subnet 3 you want to provision the third node into. Only relevant for deployments into 3 Availability zones.",
+            "Description": "ID of the private subnet 3 you want to provision the third node into. Only relevant for deployments into three Availability Zones.",
             "Type": "AWS::EC2::Subnet::Id"
         },
         "QSS3BucketName": {
