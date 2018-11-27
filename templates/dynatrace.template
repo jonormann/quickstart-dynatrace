@@ -506,12 +506,14 @@
         "EIP1" : {
  			"Type" : "AWS::EC2::EIP",
  			"Properties" : {
+                "Domain" : "vpc"
  			}
 		},
 
 		"EIP2" : {
 			"Type" : "AWS::EC2::EIP",
 			"Properties" : {
+                "Domain" : "vpc"
 			}
 		},
 
@@ -519,6 +521,7 @@
             "Type" : "AWS::EC2::EIP",
             "Condition" : "3AZCondition",
             "Properties" : {
+                "Domain" : "vpc"
             }
         },
 
