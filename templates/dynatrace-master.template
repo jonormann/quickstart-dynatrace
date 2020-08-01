@@ -425,7 +425,6 @@
             "DependsOn": "VPCStack",
             "Properties": {
                 "Parameters": {
-                    "BastionAMIOS": "Amazon-Linux-HVM",
                     "BastionInstanceType": {
                         "Ref": "BastionInstanceType"
                     },
